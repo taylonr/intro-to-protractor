@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <ul ng-repeat="e in events">
+      <li class="event item" ng-click="selectEvent(e._id)">
+        <span>{{e.name}}</span>
+        <span class="pull-right">
+          {{e.averageRating}} / 5
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>

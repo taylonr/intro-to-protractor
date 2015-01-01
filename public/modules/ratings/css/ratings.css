@@ -1,0 +1,29 @@
+ul{
+  list-style-type: none;
+}
+
+li.event.item{
+  font-size: x-large;
+  font-weight: bold;
+  padding: 10px;
+}
+
+h3{
+  color: lightgray;
+}
+
+h4{
+  margin-top: 20px;
+}
+
+span.bad{
+  color: red;
+}
+
+span.ok{
+  color: yellow;
+}
+
+span.good{
+  color: green;
+}

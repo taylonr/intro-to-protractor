@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h1>{{eventDetails.name}}
+      <span class="pull-right">{{eventDetails.averageRating}} / 5</span>
+    </h1>
+
+    <h3>{{eventDetails.description}}</h3>
+  </div>
+
+  <div class="col-md-8 col-md-offset-2">
+    <h4>Ratings:</h4>
+    <ul ng-repeat="r in eventDetails.ratings">
+      <li>
+        <span>{{r.description}}</span>
+        <span class="pull-right">{{r.rating}} / 5</span>
+      </li>
+    </ul>
+  </div>
+</div>
