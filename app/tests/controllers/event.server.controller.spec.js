@@ -2,6 +2,7 @@
 
 var controller = require('../../controllers/event.server.controller.js'),
   mongoose = require('mongoose'),
+  sinon = require('sinon'),
   EventModel = mongoose.model('Event');
 
 describe('Event Controller', function(){
@@ -83,4 +84,5 @@ describe('Event Controller', function(){
       sentData.id.should.equal(1);
     });
   });
+
 });

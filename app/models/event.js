@@ -4,6 +4,17 @@ var mongoose = require('mongoose'),
   _ = require('lodash'),
   Schema = mongoose.Schema,
   EventSchema = new Schema({
+    name: {
+      type: String,
+      trim: true,
+      default: '',
+      required: 'Name is required'
+    },
+    description: {
+      type: String,
+      trim: true,
+      default: ''
+    },
     ratings: []
   });
 
