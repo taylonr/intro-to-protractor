@@ -20,6 +20,7 @@ describe('Event Model', function(){
     it('should calculate average rating', function(){
 
       var event = new Model({
+        name: 'test',
         ratings: [{
           rating: 1
         }, {
@@ -33,11 +34,11 @@ describe('Event Model', function(){
     });
 
     it('should set average rating of 0 if no ratings', function(){
-      var event = new Model();
+      var event = new Model({name: 'test'});
       event.save(function(){
         event.averageRating.should.equal(0);
       });
-      
+
     });
   });
 });

@@ -90,4 +90,20 @@ describe('Events Service', function(){
       expect(data.name).toEqual('test event');
     });
   });
+
+  describe('When creating a new event', function(){
+    it('Should call out to the API', function(){
+      $httpBackend.whenPOST(eventsUrl).respond(201);
+
+      var success;
+
+      service.addEvent({}).then(function(d){
+        success = true;
+      });
+
+      $httpBackend.flush();
+
+      expect(success).toBeTruthy();
+      });
+  });
 });

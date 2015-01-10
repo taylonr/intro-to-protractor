@@ -26,3 +26,18 @@ exports.findSingle = function(req, res){
     sendBackData(res, err, data);
   });
 };
+
+exports.addEvent = function(req, res){
+  var model = new EventModel({
+    name: req.body.name,
+    description: req.body.description
+  });
+
+  model.save(function(err){
+    if(err){
+      res.send(500);
+    } else {
+      res.send(201);
+    }
+  });
+};

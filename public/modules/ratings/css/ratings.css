@@ -27,3 +27,11 @@ span.ok{
 span.good{
   color: green;
 }
+
+form{
+  margin-top: 1em;
+}
+
+.event.list{
+  margin-top: 1em;
+}
