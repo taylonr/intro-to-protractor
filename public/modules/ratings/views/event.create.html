@@ -1,0 +1,12 @@
+<form ng-submit="submit()">
+  <div class="form-group">
+    <label>Name:</label>
+    <input type="text" class="form-control" ng-model="event.name">
+  </div>
+  <div class="form-group">
+    <label>Description</label>
+    <textarea class="form-control" ng-model="event.description" rows="5"></textarea>
+  </div>
+
+  <button class="btn btn-default pull-right" type="submit" >Create</button>
+</form>

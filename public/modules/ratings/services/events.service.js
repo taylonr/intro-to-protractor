@@ -24,6 +24,17 @@ function eventsService($resource, $q){
     return deferred.promise;
   }
 
+  function create(event){
+    var deferred = $q.defer();
+    
+    $resource('http://localhost:3000/events').save(event).$promise
+      .then(function(){
+        deferred.resolve();
+      });
+
+    return deferred.promise;
+  }
+
   return{
     getAllEvents: function(){
       return getData('', 'query');
@@ -31,7 +42,9 @@ function eventsService($resource, $q){
 
     getSingleEvent: function(id){
       return getData(id, 'get');
-    }
+    },
+
+    addEvent: create
   };
 
 }

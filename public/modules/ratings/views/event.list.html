@@ -1,12 +1,22 @@
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <ul ng-repeat="e in events">
-      <li class="event item" ng-click="selectEvent(e._id)">
-        <span>{{e.name}}</span>
-        <span class="pull-right">
-          {{e.averageRating}} / 5
-        </span>
-      </li>
-    </ul>
+<div class="event list">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <a class="btn btn-default pull-right" ui-sref="eventsCreate">New Event <i class="glyphicon glyphicon-plus"></i></a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <ul >
+        <li class="event item" ng-repeat="e in events" ng-click="selectEvent(e._id)">
+          <span>{{e.name}}</span>
+          <span class="pull-right" ng-show="e.averageRating">
+            {{e.averageRating}} / 5
+          </span>
+          <span class="pull-right" ng-hide="e.averageRating">
+            Not Yet Rated
+          </span>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

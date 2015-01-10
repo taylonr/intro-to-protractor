@@ -17,7 +17,7 @@ function controller($scope, $state, eventService){
   };
 
   $scope.selectEvent = function(id){
-    $state.go('eventDetails', {eventId: id});
+    $state.go('eventsDetails', {eventId: id});
   };
 
   $scope.calculateRatingQuality = function(rating){

@@ -93,7 +93,7 @@ describe('Event List Controller', function(){
   describe('When selecting an item', function(){
     it('should navigate to the detail state', function(){
       scope.selectEvent(1);
-      expect($state.go).toHaveBeenCalledWith('eventDetails',
+      expect($state.go).toHaveBeenCalledWith('eventsDetails',
         {eventId: 1});
     });
   });
