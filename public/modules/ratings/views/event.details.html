@@ -9,8 +9,8 @@
 
   <div class="col-md-8 col-md-offset-2">
     <h4>Ratings:</h4>
-    <ul ng-repeat="r in eventDetails.ratings">
-      <li>
+    <ul>
+      <li ng-repeat="r in eventDetails.ratings">
         <span>{{r.description}}</span>
         <span class="pull-right">{{r.rating}} / 5</span>
       </li>
