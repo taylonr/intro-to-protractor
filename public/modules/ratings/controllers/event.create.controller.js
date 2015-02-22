@@ -5,10 +5,10 @@
     ['$scope', '$state', 'EventsService', controller]);
 
   function controller($scope, $state, EventsService){
-    $scope.event = {};
+    $scope.item = {};
 
     $scope.submit = function(){
-      EventsService.addEvent($scope.event).then(function(){
+      EventsService.addEvent($scope.item).then(function(){
         $state.go('events');
       });
     };

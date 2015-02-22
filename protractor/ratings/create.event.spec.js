@@ -1,6 +1,9 @@
+var CreatePage = require('./pages/create.event.page.js');
+
 describe('Adding a new event', function(){
   var button,
-    css;
+    css,
+    createPage = new CreatePage();
 
   beforeEach(function(){
       browser.get('http://localhost:3000/#!/EventRatings/new');
@@ -17,17 +20,37 @@ describe('Adding a new event', function(){
 
   describe('When specifying the name', function(){
     it('Should enable the Create button', function(){
-      element(by.model('event.name')).sendKeys('A Sample Event');
+      createPage.name.sendKeys('A Sample Event');
 
       var css = button.getAttribute('class');
 
       expect(css).not.toMatch('disabled');
     });
+
+    describe('When the name is too short', function(){
+      it('Should disable the create button', function(){
+        createPage.name.sendKeys('ABC');
+
+        var css = button.getAttribute('class');
+
+        expect(css).toMatch('disabled');
+      });
+    });
+
+    describe('When the name is too long', function(){
+      it('Should disable the create button', function(){
+        createPage.name.sendKeys('abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz')
+
+        var css = button.getAttribute('class');
+
+        expect(css).toMatch('disabled');
+      });
+    });
   });
 
   describe('When saving the form', function(){
     it('Should add the event to the list', function(){
-      element(by.model('event.name')).sendKeys('Module 3');
+      createPage.name.sendKeys('Module 3');
 
       button.click();
 

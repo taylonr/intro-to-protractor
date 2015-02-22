@@ -4,8 +4,8 @@ exports.config = {
 
   suites: {
     smoke: './smoke/*.spec.js',
-    longRunning: './ratings/a.bunch.of.long.tests.spec.js',
-    full: './**/*.spec.js'
+    full: './**/*.spec.js',
+    ratings: './ratings/*.spec.js'
   },
 
   onPrepare: function(){
