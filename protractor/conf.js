@@ -5,7 +5,8 @@ exports.config = {
   suites: {
     smoke: './smoke/*.spec.js',
     full: './**/*.spec.js',
-    ratings: './ratings/*.spec.js'
+    ratings: './ratings/*.spec.js',
+    create: './ratings/create.event.spec.js'
   },
 
   onPrepare: function(){
