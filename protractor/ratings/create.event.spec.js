@@ -1,41 +1,40 @@
-describe('Adding a new event', function(){
-  var button,
-    css;
-
-  beforeEach(function(){
+describe('Creating an event', function(){
+  describe('When the form is invalid', function(){
+    it('should have the submit button disabled', function(){
       browser.get('http://localhost:3000/#!/EventRatings/new');
-      button = element(by.buttonText('Create'));
-  });
 
-  describe('When the form is empty', function(){
-    it('Should disable the Create button', function(){
+      var button = element(by.buttonText('Create'));
+
       var css = button.getAttribute('class');
 
       expect(css).toMatch('disabled');
     });
   });
 
-  describe('When specifying the name', function(){
-    it('Should enable the Create button', function(){
-      element(by.model('event.name')).sendKeys('A Sample Event');
+  describe('and specifying the name', function(){
+    it('should enable the create button', function(){
+      browser.get('http://localhost:3000/#!/EventRatings/new');
 
-      var css = button.getAttribute('class');
+      var name = element(by.model('event.name')).sendKeys('A Sample Event');
 
-      expect(css).not.toMatch('disabled');
+      expect(element(by.buttonText('Create')).getAttribute('class')).not.toMatch('disabled');
     });
   });
 
-  describe('When saving the form', function(){
-    it('Should add the event to the list', function(){
-      element(by.model('event.name')).sendKeys('Module 3');
+  describe('and saving the event', function(){
+    it('should add it to the event list', function(){
+      browser.get('http://localhost:3000/#!/EventRatings/new');
 
-      button.click();
+      var name = element(by.model('event.name')).sendKeys('My New Event');
+
+      element(by.buttonText('Create')).click();
 
       browser.waitForAngular();
 
       var list = element.all(by.binding('name'));
 
-      expect(list.getText()).toMatch('Module 3');
+      expect(list.getText()).toMatch('My New Event');
+
     });
   });
 });
