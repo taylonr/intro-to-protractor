@@ -4,14 +4,16 @@
 angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies);
 
 // Setting HTML5 Location Mode
-angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider',
-	function($locationProvider) {
-		$locationProvider.hashPrefix('!');
-	}
+angular.module(ApplicationConfiguration.applicationModuleName)
+	.config(['$locationProvider',
+		function ($locationProvider) {
+			$locationProvider.html5Mode(false);
+			$locationProvider.hashPrefix('!');
+		}
 ]);
 
 //Then define the init function for starting up the application
-angular.element(document).ready(function() {
+angular.element(document).ready(function () {
 	//Fixing facebook bug with redirect
 	if (window.location.hash === '#_=_') window.location.hash = '#!';
 

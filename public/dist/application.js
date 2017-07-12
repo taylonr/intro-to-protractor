@@ -226,19 +226,57 @@ function ratingsRoutes($stateProvider) {
     url: '/EventRatings',
     templateUrl: 'modules/ratings/views/event.list.html',
     controller: 'EventListController'
-  }).state('eventsDetail', {
+  }).state('eventsCreate', {
+    url: '/EventRatings/new',
+    templateUrl: 'modules/ratings/views/event.create.html',
+    controller: 'EventCreateController'
+  }).state('eventsDetails', {
     url: '/EventRatings/:eventId',
-    templateUrl: 'modules/ratings/views/event.detail.html',
-    controller: 'EventDetailController'
+    templateUrl: 'modules/ratings/views/event.details.html',
+    controller: 'EventDetailsController'
   });
+}(function () {
+  'use strict';
+  angular.module('ratings').controller('EventCreateController', [
+    '$scope',
+    '$state',
+    'EventsService',
+    controller
+  ]);
+  function controller($scope, $state, EventsService) {
+    $scope.event = {};
+    $scope.submit = function () {
+      EventsService.addEvent($scope.event).then(function () {
+        $state.go('events');
+      });
+    };
+  }
+}());'use strict';
+angular.module('ratings').controller('EventDetailsController', [
+  '$scope',
+  '$stateParams',
+  'EventsService',
+  controller
+]);
+function controller($scope, $stateParams, EventsService) {
+  $scope.loading = true;
+  $scope.getEvent = function (id) {
+    EventsService.getSingleEvent(id).then(function (detail) {
+      $scope.eventDetails = detail;
+    }).finally(function () {
+      $scope.loading = false;
+    });
+  };
+  $scope.getEvent($stateParams.eventId);
 }'use strict';
 var app = angular.module('ratings');
 app.controller('EventListController', [
   '$scope',
+  '$state',
   'EventsService',
   controller
 ]);
-function controller($scope, eventService) {
+function controller($scope, $state, eventService) {
   $scope.loading = true;
   $scope.getAllEvents = function () {
     eventService.getAllEvents().then(function (events) {
@@ -246,6 +284,18 @@ function controller($scope, eventService) {
     }).finally(function () {
       $scope.loading = false;
     });
+  };
+  $scope.selectEvent = function (id) {
+    $state.go('eventsDetails', { eventId: id });
+  };
+  $scope.calculateRatingQuality = function (rating) {
+    if (rating < 2) {
+      return 'bad';
+    } else if (rating <= 3.5) {
+      return 'ok';
+    } else {
+      return 'good';
+    }
   };
   $scope.getAllEvents();
 }'use strict';
@@ -269,13 +319,21 @@ function eventsService($resource, $q) {
     });
     return deferred.promise;
   }
+  function create(event) {
+    var deferred = $q.defer();
+    $resource('http://localhost:3000/events').save(event).$promise.then(function () {
+      deferred.resolve();
+    });
+    return deferred.promise;
+  }
   return {
     getAllEvents: function () {
       return getData('', 'query');
     },
     getSingleEvent: function (id) {
       return getData(id, 'get');
-    }
+    },
+    addEvent: create
   };
 }'use strict';
 // Config HTTP Error Handling

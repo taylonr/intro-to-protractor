@@ -84,13 +84,13 @@ module.exports = function(db) {
 	app.use(cookieParser());
 
 	// Express MongoDB session storage
-	app.use(session({
-		secret: config.sessionSecret,
-		store: new mongoStore({
-			db: db.connection.db,
-			collection: config.sessionCollection
-		})
-	}));
+	// app.use(session({
+	// 	secret: config.sessionSecret,
+	// 	store: new mongoStore({
+	// 		db: db.connection.db,
+	// 		collection: config.sessionCollection
+	// 	})
+	// }));
 
 	// use passport session
 	app.use(passport.initialize());
