@@ -3,7 +3,7 @@
 Due to changes in node after v6.5 running `npm install` will fail. *However*, it is still possible to run this project.
 
 1. Start by installing `n` which is a node version manager. `sudo npm install n`
-2. Set the version of node for your poject by calling `n 6.5.0`
+2. Set the version of node for your project by calling `n 6.5.0`
 3. Run `npm install`
 
 ## Mean JS
